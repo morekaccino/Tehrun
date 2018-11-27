@@ -1,0 +1,277 @@
+{% load static %}
+{% load tz %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://cdn.rawgit.com/rastikerdar/vazir-font/v19.0.0/dist/font-face.css" rel="stylesheet"
+          type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #1E1E1E;
+        }
+
+        h1, h2, h3, h4, h5, h6, p, li, a {
+            font-family: Vazir;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a i {
+            font-family: Fontawesome;
+        }
+
+        .banner {
+            background: linear-gradient(0deg, rgb(30, 30, 30), rgba(2, 193, 255, 0) 15%), url({% static 'images/bg_vector.jpg' %}) no-repeat;
+            /*background-image: url("images/bg_vector.jpg");*/
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .blog_index {
+            background-color: #1E1E1E;
+        {#height: 85%;#} background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        div.blog_header {
+            height: 50px;
+            margin-top: 50px;
+            background-color: #1E1E1E;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        div.blog_header h2 {
+            font-family: Vazir;
+            text-align: center;
+            color: #fbfdff;
+        }
+
+        div.article_box {
+            margin-top: 20px;
+            /*padding: 5px;*/
+        }
+
+        h4.article_header {
+            font-family: Vazir;
+            direction: rtl;
+            text-align: right;
+            /*color: rgba(227, 206, 11, 0.93);*/
+        }
+
+        .article_header {
+            font-family: Vazir;
+            direction: rtl;
+            text-align: right;
+            /*color: rgba(227, 206, 11, 0.93);*/
+        }
+
+        p.article_body {
+            font-family: Vazir;
+            direction: rtl;
+            text-align: right;
+            color: rgb(185, 186, 187);
+        }
+
+        pre.article_body {
+            font-family: Vazir;
+            direction: rtl;
+            text-align: right;
+            color: rgb(185, 186, 187);
+        }
+
+        p.article_body img {
+            border-radius: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+        }
+
+        p.article_date {
+            font-family: Vazir;
+            font-size: small;
+            direction: rtl;
+            text-align: right;
+            color: rgb(104, 105, 105);
+        }
+
+        footer {
+            text-align: center;
+            color: #1E1E1E;
+            height: 50px;
+            margin-top: 70px;
+            background-color: #000000;
+            padding-top: 15px;
+        }
+
+        .navbar-expand-md .navbar-nav .nav-menu {
+            padding-right: 1.2em;
+            padding-left: 1.2em;
+        }
+
+        .fa, .fab, .fal, .far, .fas {
+            line-height: 55px;
+        }
+
+        input {
+            font-family: Vazir;
+        }
+
+        input.title {
+            background-color: #1E1E1E;
+            color: #fbfdff;
+            font-size: 2.5rem;
+            direction: rtl;
+            border: 0px;
+            overflow: hidden;
+        }
+
+        textarea.body {
+            font-family: Vazir;
+            background-color: #1E1E1E;
+            color: rgb(185, 186, 187);
+            font-size: 16px;
+            line-height: 1.428;
+            direction: rtl;
+            border: 0px;
+            overflow: hidden;
+            width: 100%;
+        {#height: 500px;#}
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>ته مانده ی تفکرات یک بشر قرن بیست و یکم</title>
+</head>
+
+
+<body>
+<div>
+    <div class="container">
+
+    </div>
+</div>
+<div class="blog_index">
+    <div class="container">
+        <div class="article_box">
+            <div class="row">
+                <i id="goback" style="color: rgb(185, 186, 187); font-size: x-large"
+                   class="fas fa-arrow-left pl-3 col-xs-1"></i>
+                <a class="col-xs-11 align-right ml-auto pr-3" href="#">
+                    <input id="title" placeholder="عنوان نوشته" class="title" type="text">
+                </a>
+            </div>
+            <p class="article_date">12 بهمن 1398</p>
+
+            {% autoescape off %}
+                <textarea placeholder="متن نوشته..."
+                          oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="body"
+                          id="body" cols="30" rows="29"></textarea>
+            {% endautoescape %}
+            <div class="row">
+                <div class="col-xs-6 px-1 mx-auto" style="width: 50%">
+                    <input onclick="post_article(false)" id="save" type="submit"
+                           class="btn btn-outline-info btn-lg btn-block" value="ذخیره">
+                </div>
+                <div class="col-xs-6 px-1 mx-auto" style="width: 50%">
+                    <input onclick="post_article(true)" id="publish" type="submit"
+                           class="btn btn-outline-success btn-lg btn-block" value="نشر">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>تهییه شده با عشق و این حرفا</p>
+</footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
+<script>
+    var header_colors = ["#20c997", "#007bff", "#17a2b8", "#ffc107", "#6f42c1", "#dc3545", "#e83e8c", "#28a745", "#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4", "#00bcd4", "#4caf50", "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722"];
+
+    function random_color() {
+        var rnd = Math.floor(Math.random() * header_colors.length);
+        console.log(rnd);
+        return header_colors[rnd];
+    }
+
+    window.onload = function () {
+        var all_headers = document.getElementsByClassName("article_header");
+        console.log(all_headers);
+        for (var i = 0; i < all_headers.length; i++) {
+            all_headers[i].style.color = random_color();
+        }
+
+        var footer = document.getElementsByTagName("footer")[0];
+        footer.style.backgroundImage = "linear-gradient(90deg," + random_color() + ", " + random_color() + ")";
+        console.log("done", footer);
+
+        var goback = document.getElementById("goback");
+        goback.onclick = function () {
+            window.history.back();
+
+        }
+
+        var title = document.getElementById("title");
+        title.style.color = random_color();
+
+    }
+
+    function post_article(publish) {
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "{% url 'new_post' %}";
+
+        var title = document.createElement("input");
+        title.type = "text";
+        title.name = "title";
+        title.value = document.getElementById("title").value;
+
+        var body = document.createElement("textarea");
+        body.name = "body";
+        body.value = document.getElementById("body").value;
+
+        var published = document.createElement("input");
+        published.name = "published";
+        published.value = "published";
+        published.checked = publish ? true : false;
+
+        var csrf = document.createElement("input");
+        csrf.type = "hidden";
+        csrf.name = "csrfmiddlewaretoken";
+        csrf.value = '{{ csrf_token }}';
+
+        form.appendChild(title);
+        form.appendChild(body);
+        form.appendChild(published);
+        form.appendChild(csrf);
+
+        document.body.appendChild(form);
+
+        form.submit();
+    }
+
+</script>
+</html>
