@@ -1,5 +1,6 @@
 {% load static %}
 {% load tz %}
+{% load jformat %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,7 +138,7 @@
                 <a href="{% url 'post' post.id %}">
                     <h4 class="article_header">{{ post.title }}</h4>
                 </a>
-                <p class="article_date">12 بهمن 1398</p>
+                <p class="article_date">{{ post.date|jformat:"%Y/%m/%d" }}</p>
                 {% autoescape off %}
                     <p class="article_body">
                         {{ post.body|linebreaksbr }}

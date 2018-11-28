@@ -174,12 +174,11 @@
                     <input id="title" placeholder="عنوان نوشته" class="title" type="text">
                 </a>
             </div>
-            <p class="article_date">12 بهمن 1398</p>
 
             {% autoescape off %}
                 <textarea placeholder="متن نوشته..."
                           oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="body"
-                          id="body" cols="30" rows="29"></textarea>
+                          id="body" cols="30" rows="31"></textarea>
             {% endautoescape %}
             <div class="row">
                 <div class="col-xs-6 px-1 mx-auto" style="width: 50%">
