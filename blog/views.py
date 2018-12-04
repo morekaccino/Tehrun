@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 def index(request):
     template_name = "index.html"
     posts = Post.objects.filter(published=True).order_by('-date')
-    paginator = Paginator(posts,1)
+    paginator = Paginator(posts,10)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     context = {'posts': posts}
