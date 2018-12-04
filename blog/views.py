@@ -33,6 +33,7 @@ def new(request):
             post = form.save(commit=False)
             post.author = author
             post.published_date = timezone.now()
+
             post.save()
             return redirect("post", id=post.id)
     elif request.method == "GET":

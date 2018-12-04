@@ -1,8 +1,12 @@
 {% load static %}
 {% load tz %}
+{% load jformat %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" id="browser-color" content="#1E1E1E">
+    <link rel="icon" sizes="192x192" href="{% static 'images/logo192.png' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://cdn.rawgit.com/rastikerdar/vazir-font/v19.0.0/dist/font-face.css" rel="stylesheet"
@@ -141,14 +145,21 @@
             <div class="row">
                 <i id="goback" style="color: rgb(185, 186, 187); font-size: x-large"
                    class="fas fa-arrow-left pl-3 col-xs-1"></i>
-                <a class="col-xs-11 align-right ml-auto pr-3" href="{% url 'post' post.id %}">
-                    <h1 class="article_header">{{ post.title }}</h1>
+                <a class="col-xs-11 align-right ml-auto {% if post.is_english %}pl-3{% else %}pr-3{% endif %}" href="{% url 'post' post.id %}">
+                    <h1 {% if post.is_english %}style="text-align: left;direction:ltr;"{% endif %}
+                        class="article_header">{{ post.title }}</h1>
                 </a>
             </div>
-            <p class="article_date">12 بهمن 1398</p>
+            <p {% if post.is_english %}style="direction:ltr;" {% endif %} class="article_date">
+                {% if post.is_english %}
+                    {{ post.date|date:"Y/m/d" }}
+                {% else %}
+                    {{ post.date|jformat:"%Y/%m/%d" }}
+                {% endif %}
+            </p>
 
             {% autoescape off %}
-                <p class="article_body">
+                <p {% if post.is_english %}style="text-align: left;direction:ltr;"{% endif %} class="article_body">
                     {{ post.body|linebreaksbr }}
                 </p>
             {% endautoescape %}
@@ -180,9 +191,11 @@
 
     window.onload = function () {
         var all_headers = document.getElementsByClassName("article_header");
-        console.log(all_headers);
+        var browser_color = document.getElementById("browser-color");
         for (var i = 0; i < all_headers.length; i++) {
-            all_headers[i].style.color = random_color();
+            var rnd_color = random_color();
+            all_headers[i].style.color = rnd_color;
+            browser_color.content = rnd_color;
         }
 
         var footer = document.getElementsByTagName("footer")[0];

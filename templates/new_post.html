@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" id="browser-color" content="#1E1E1E">
+    <link rel="icon" sizes="192x192" href="{% static 'images/logo192.png' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://cdn.rawgit.com/rastikerdar/vazir-font/v19.0.0/dist/font-face.css" rel="stylesheet"
@@ -137,6 +140,7 @@
             direction: rtl;
             border: 0px;
             overflow: hidden;
+            width: 100%;
         }
 
         textarea.body {
@@ -177,10 +181,10 @@
 
             {% autoescape off %}
                 <textarea placeholder="متن نوشته..."
-                          oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="body"
-                          id="body" cols="30" rows="31"></textarea>
+                          class="body"
+                          id="body" cols="30" rows="29"></textarea>
             {% endautoescape %}
-            <div class="row">
+            <div class="row pt-5">
                 <div class="col-xs-6 px-1 mx-auto" style="width: 50%">
                     <input onclick="post_article(false)" id="save" type="submit"
                            class="btn btn-outline-info btn-lg btn-block" value="ذخیره">
@@ -209,34 +213,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
 <script>
     var header_colors = ["#20c997", "#007bff", "#17a2b8", "#ffc107", "#6f42c1", "#dc3545", "#e83e8c", "#28a745", "#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4", "#00bcd4", "#4caf50", "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800", "#ff5722"];
+    var is_english = false;
 
     function random_color() {
         var rnd = Math.floor(Math.random() * header_colors.length);
-        console.log(rnd);
         return header_colors[rnd];
     }
 
     window.onload = function () {
         var all_headers = document.getElementsByClassName("article_header");
-        console.log(all_headers);
+        var browser_color = document.getElementById("browser-color");
         for (var i = 0; i < all_headers.length; i++) {
-            all_headers[i].style.color = random_color();
+            var rnd_color = random_color();
+            all_headers[i].style.color = rnd_color;
+            browser_color.content = rnd_color;
         }
 
         var footer = document.getElementsByTagName("footer")[0];
         footer.style.backgroundImage = "linear-gradient(90deg," + random_color() + ", " + random_color() + ")";
-        console.log("done", footer);
 
         var goback = document.getElementById("goback");
         goback.onclick = function () {
             window.history.back();
 
-        }
+        };
 
         var title = document.getElementById("title");
         title.style.color = random_color();
 
-    }
+        var body = document.getElementById("body");
+        body.oninput = lang_check;
+
+    };
 
     function post_article(publish) {
         var form = document.createElement("form");
@@ -254,8 +262,13 @@
 
         var published = document.createElement("input");
         published.name = "published";
-        published.value = "published";
-        published.checked = publish ? true : false;
+        published.value = publish ? true : false;
+        published.checked = publish;
+
+        var _is_english = document.createElement("input");
+        _is_english.name = "is_english";
+        _is_english.value = is_english ? true : false;
+        _is_english.checked = is_english;
 
         var csrf = document.createElement("input");
         csrf.type = "hidden";
@@ -265,11 +278,29 @@
         form.appendChild(title);
         form.appendChild(body);
         form.appendChild(published);
+        form.appendChild(_is_english);
         form.appendChild(csrf);
 
         document.body.appendChild(form);
 
         form.submit();
+    }
+
+    function lang_check() {
+
+        this.style.height = "";
+        this.style.height = (parseInt(this.scrollHeight)) + "px";
+
+        var input = this.value;
+        pattern = /^[A-Z]/i;
+        if (pattern.match(input)) {
+            is_english = true;
+            console.log("eng");
+        }
+        else {
+            is_english = false;
+            console.log("not eng");
+        }
     }
 
 </script>
