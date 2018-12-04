@@ -1,14 +1,17 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from blog.models import Post, Author
 from django.contrib.auth.decorators import login_required
 from blog.forms import PostForm
 from django.utils import timezone
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
     template_name = "index.html"
-    posts = Post.objects.filter(published=True).order_by('-date')[:10]
+    posts = Post.objects.filter(published=True).order_by('-date')
+    paginator = Paginator(posts,1)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
     context = {'posts': posts}
     return render(request=request, template_name=template_name, context=context)
 
@@ -16,7 +19,7 @@ def index(request):
 def post(request, id):
     template_name = "post.html"
     try:
-        post = Post.objects.get(id=id, published=True)
+        post = get_object_or_404(Post, id=id, published=True)
         context = {'post': post}
         return render(request=request, template_name=template_name, context=context)
     except:

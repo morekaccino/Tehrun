@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -39,8 +41,11 @@ INSTALLED_APPS = [
     'django_jalali',
 ]
 
+SITE_ID = 1
+
 LANGUAGE_CODE = 'fa-ir'
 import locale
+
 locale.setlocale(locale.LC_ALL, "fa_IR")
 
 MIDDLEWARE = [

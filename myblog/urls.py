@@ -14,13 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path
 from blog.views import index, post, new
+from blog.sitemaps import PostSitemap, StaticSitemap
+
+sitemaps = {
+    'posts': PostSitemap,
+    'static': StaticSitemap,
+}
 
 urlpatterns = [
     path('', index, name='index'),
     path('post/<int:id>', post, name="post"),
     path('admin/', admin.site.urls),
-    path('new/', new, name="new_post")
-
+    path('new/', new, name="new_post"),
+    path('sitemap.xml', sitemap, {'sitemaps':sitemaps}),
 ]

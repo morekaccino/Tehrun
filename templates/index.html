@@ -120,6 +120,23 @@
             padding-right: 1.2em;
             padding-left: 1.2em;
         }
+
+
+        .page-item.disabled .page-link{
+            color: #747474;
+            pointer-events: none;
+            cursor: auto;
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+        .page-item .page-link{
+            color: #E1E1E1;
+            {#pointer-events: none;#}
+            cursor: auto;
+            background-color: transparent;
+            border-color: transparent;
+        }
     </style>
     <meta charset="UTF-8">
     <title>ته مانده ی تفکرات یک بشر قرن بیست و یکم</title>
@@ -157,6 +174,36 @@
                 {% endautoescape %}
             </div>
         {% endfor %}
+        <nav aria-label="Page navigation example" class="pt-5">
+            <ul class="pagination pagination-lg justify-content-center">
+                <li class="page-item {% if not posts.has_next %}disabled{% endif %}">
+                    <a class="page-link"
+                       href="{% if posts.has_next %}?page={{ posts.paginator.num_pages }}{% else %}#{% endif %}">
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="page-item {% if not posts.has_next %}disabled{% endif %}">
+                    <a class="page-link"
+                       href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% else %}#{% endif %}">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="page-item ">
+                    <a class="page-link" href="#" tabindex="-1">{{ posts.number }}</a>
+                </li>
+                <li class="page-item {% if not posts.has_previous %}disabled{% endif %}">
+                    <a class="page-link"
+                       href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% else %}#{% endif %}">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="page-item {% if not posts.has_previous %}disabled{% endif %}">
+                    <a class="page-link" href="?page=1">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 <footer>
