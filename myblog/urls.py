@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
-from django.urls import path
+from django.urls import path, include
 from blog.views import index, post, new
 from blog.sitemaps import PostSitemap, StaticSitemap
 
@@ -27,7 +27,8 @@ sitemaps = {
 urlpatterns = [
     path('', index, name='index'),
     path('post/<int:id>', post, name="post"),
-    path('admin/', admin.site.urls),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot'), name='fakeadmin'),
+    path('secretdoor/', admin.site.urls),
     path('new/', new, name="new_post"),
     path('sitemap.xml', sitemap, {'sitemaps':sitemaps}),
 ]

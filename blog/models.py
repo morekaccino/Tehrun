@@ -5,6 +5,8 @@ from django.db import models
 # Create your models here.
 from django.urls import reverse
 
+class IndexPage(models.Model):
+    page = models.IntegerField(unique=True, primary_key=True)
 
 class Author(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
