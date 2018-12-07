@@ -49,3 +49,6 @@ def new(request):
         posts = Post.objects.filter(published=True)
         context = {'posts': posts}
         return render(request=request, template_name=template_name, context=context)
+
+def robots(request):
+    return HttpResponse("User-agent: *\nDisallow: /", content_type='text/plain')
