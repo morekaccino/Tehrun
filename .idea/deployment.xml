@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="VM">
+  <component name="PublishConfigData" serverName="PythonAnywhere">
     <serverData>
+      <paths name="PythonAnywhere">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/mowhamadrexa/Tehrun" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="VM">
         <serverdata>
           <mappings>

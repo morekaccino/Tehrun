@@ -10,6 +10,14 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="92771c3b-3977-4d78-9104-fa3cc0be9dd1" name="PythonAnywhere" url="http://ssh.pythonanywhere.com">
+        <fileTransfer host="ssh.pythonanywhere.com" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

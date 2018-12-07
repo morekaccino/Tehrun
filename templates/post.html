@@ -153,9 +153,9 @@
             </div>
             <p {% if post.is_english %}style="direction:ltr;" {% endif %} class="article_date">
                 {% if post.is_english %}
-                    {{ post.date|date:"Y/m/d" }}
+                    {{ post.date|localtime|date:"Y/m/d" }}
                 {% else %}
-                    {{ post.date|jformat:"%Y/%m/%d" }}
+                    {{ post.date|localtime|jformat:"%Y/%m/%d" }}
                 {% endif %}
             </p>
 
