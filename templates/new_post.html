@@ -142,6 +142,7 @@
             border: 0px;
             overflow: hidden;
             width: 100%;
+            max-width: 3000px;
         }
 
         textarea.body {
@@ -154,7 +155,13 @@
             border: 0px;
             overflow: hidden;
             width: 100%;
-        {#height: 500px;#}
+        }
+
+        .input-block-level {
+            display: block;
+            width: 100%;
+            min-height: 28px;
+            .box-sizing(border-box);
         }
 
     </style>
@@ -174,10 +181,11 @@
         <div class="article_box">
             <div class="row">
                 <i id="goback" style="color: rgb(185, 186, 187); font-size: x-large"
-                   class="fas fa-arrow-left pl-3 col-xs-1"></i>
-                <a class="col-xs-11 align-right ml-auto pr-3" href="#">
+                   class="fas fa-arrow-left pl-3 col-xs-1 col-xs-1 col-md-1 col-lg-1">
+                </i>
+                <div class="col-xs-11 col-md-11 col-lg-11 align-right ml-auto">
                     <input id="title" placeholder="عنوان نوشته" class="title" type="text">
-                </a>
+                </div>
             </div>
 
             {% autoescape off %}
@@ -241,6 +249,7 @@
 
         var title = document.getElementById("title");
         title.style.color = random_color();
+        title.oninput = lang_check;
 
         var body = document.getElementById("body");
         body.oninput = lang_check;
@@ -296,11 +305,13 @@
         pattern = /^[A-Z]/i;
         if (pattern.match(input)) {
             is_english = true;
-            console.log("eng");
+            this.style.direction = "ltr";
+            this.style.textAlign = "left";
         }
         else {
             is_english = false;
-            console.log("not eng");
+            this.style.direction = "rtl";
+            this.style.textAlign = "right";
         }
     }
 
