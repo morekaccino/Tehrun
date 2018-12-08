@@ -6,11 +6,12 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from tracking_analyzer.models import Tracker
 
+
 # Create your views here.
 def index(request):
     template_name = "index.html"
     posts = Post.objects.filter(published=True).order_by('-date')
-    paginator = Paginator(posts,10)
+    paginator = Paginator(posts, 10)
     page = request.GET.get('page') or 1
     index_page = IndexPage.objects.get_or_create(page=int(page))[0]
     posts = paginator.get_page(page)
@@ -49,6 +50,7 @@ def new(request):
         posts = Post.objects.filter(published=True)
         context = {'posts': posts}
         return render(request=request, template_name=template_name, context=context)
+
 
 def robots(request):
     return HttpResponse("User-agent: *\nDisallow: /", content_type='text/plain')

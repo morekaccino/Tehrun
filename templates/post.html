@@ -146,7 +146,8 @@
             <div class="row">
                 <i id="goback" style="color: rgb(185, 186, 187); font-size: x-large"
                    class="fas fa-arrow-left pl-3 col-xs-1"></i>
-                <a class="col-xs-11 align-right ml-auto {% if post.is_english %}pl-3{% else %}pr-3{% endif %}" href="{% url 'post' post.id %}">
+                <a class="col-xs-11 align-right ml-auto {% if post.is_english %}pl-3{% else %}pr-3{% endif %}"
+                   href="{% url 'post' post.id %}">
                     <h1 {% if post.is_english %}style="text-align: left;direction:ltr;"{% endif %}
                         class="article_header">{{ post.title }}</h1>
                 </a>
