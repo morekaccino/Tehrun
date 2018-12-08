@@ -13,13 +13,14 @@ def post_meta(post):
                                                                                    post.date.month) + '-' + str(
                                                                                    post.date.day))
     charset = '<meta charset="UTF-8">'
-
+    google = '<meta name="google-site-verification" content="ACR3kWAMtrxQH40eHiTjkmBsVin-OiGRdEMRZtdfyTs" />'
     return {'title': title,
             'description': description,
             'keywords': keywords,
             'author': author,
             'date': date,
             'charset': charset,
+            'google': google
             }
 
 
@@ -33,11 +34,12 @@ def index_meta():
                                                                                    timezone.now().month) + '-' + str(
                                                                                    timezone.now().day))
     charset = '<meta charset="UTF-8">'
-
+    google = '<meta name="google-site-verification" content="ACR3kWAMtrxQH40eHiTjkmBsVin-OiGRdEMRZtdfyTs" />'
     return {'title': title,
             'description': description,
             'keywords': keywords,
             'author': author,
             'date': date,
             'charset': charset,
+            'google': google
             }
