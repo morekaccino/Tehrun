@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from meta.models import ModelMeta
 
 # Create your models here.
 from django.urls import reverse

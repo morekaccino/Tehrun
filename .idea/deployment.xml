@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="PythonAnywhere" persistUploadOnCheckin="false">
+  <component name="PublishConfigData" serverName="PythonAnywhere" uploadOnCheckin="92771c3b-3977-4d78-9104-fa3cc0be9dd1">
     <serverData>
       <paths name="PythonAnywhere">
         <serverdata>
@@ -17,5 +17,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="PythonAnywhere" />
   </component>
 </project>
