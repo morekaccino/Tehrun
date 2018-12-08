@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% autoescape off %}
+        {% for _, meta in metas.items %}
+            {{ meta }}
+        {% endfor %}
+    {% endautoescape %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" id="browser-color" content="#1E1E1E">
     <link rel="icon" sizes="192x192" href="{% static 'images/logo192.png' %}">
@@ -134,8 +139,6 @@
 
 
     </style>
-    <meta charset="UTF-8">
-    <title>ته مانده ی تفکرات یک بشر قرن بیست و یکم</title>
 </head>
 
 <body>

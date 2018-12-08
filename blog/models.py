@@ -21,6 +21,7 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=1000)
     body = models.TextField()
+    keywords = models.CharField(max_length=155, blank=True)
     is_english = models.BooleanField(default=False)
     published = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)

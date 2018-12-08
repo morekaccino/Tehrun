@@ -5,6 +5,7 @@ from blog.forms import PostForm
 from django.utils import timezone
 from django.core.paginator import Paginator
 from tracking_analyzer.models import Tracker
+from blog.seo import post_meta, index_meta
 
 
 # Create your views here.
@@ -15,7 +16,7 @@ def index(request):
     page = request.GET.get('page') or 1
     index_page = IndexPage.objects.get_or_create(page=int(page))[0]
     posts = paginator.get_page(page)
-    context = {'posts': posts}
+    context = {'posts': posts, 'metas': index_meta(),}
     Tracker.objects.create_from_request(request, index_page)
     return render(request=request, template_name=template_name, context=context)
 
@@ -24,7 +25,7 @@ def post(request, id):
     template_name = "post.html"
     try:
         post = get_object_or_404(Post, id=id, published=True)
-        context = {'post': post}
+        context = {'post': post, 'metas': post_meta(post)}
         Tracker.objects.create_from_request(request, post)
         return render(request=request, template_name=template_name, context=context)
     except Exception as E:
