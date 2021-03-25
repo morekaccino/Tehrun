@@ -13,7 +13,7 @@ idna==2.7
 jdatetime==3.1.0
 maxminddb==1.4.1
 pytz==2018.7
-PyYAML==3.13
+PyYAML==5.4
 requests==2.20.1
 ua-parser==0.8.0
 urllib3==1.24.1
